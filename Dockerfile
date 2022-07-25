@@ -4,7 +4,7 @@ WORKDIR /apps
 COPY . .
 RUN ls -a
 RUN go version
-RUN make build
+RUN #make build
 RUN make install
 RUN  apt-get install nginx -y
 RUN sh init.sh
