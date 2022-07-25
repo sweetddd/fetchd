@@ -32,8 +32,6 @@ cat $HOME/.fetchd/config/genesis.json | jq '.app_state["gov"]["deposit_params"][
 cat $HOME/.fetchd/config/genesis.json | jq '.app_state["mint"]["params"]["mint_denom"]="afet"' > $HOME/.fetchd/config/tmp_genesis.json && mv $HOME/.fetchd/config/tmp_genesis.json $HOME/.fetchd/config/genesis.json
 
 
-fetchd keys add validator
-fetchd keys add henry
 
 
 fetchd add-genesis-account validator 100000000000000000000afet
