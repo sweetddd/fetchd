@@ -5,14 +5,14 @@ ENV PACKAGES jq curl wget jq file make git
 
 WORKDIR /apps
 COPY . .
-RUN apt-get update
-RUN  apt install -y apt-transport-https ca-certificates
-RUN cp sources.list /etc/apt/sources.list
+#RUN apt-get update
+#RUN  apt install -y apt-transport-https ca-certificates
+#RUN cp sources.list /etc/apt/sources.list
 
-RUN apt-get install -y  curl   make git
+#RUN apt-get install -y  curl   make git
 RUN ls -a
 RUN go version
-RUN #make build
+RUN go mod tidy
 RUN make install
 RUN  apt-get install nginx -y
 RUN sh init.sh
