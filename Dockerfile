@@ -11,7 +11,7 @@ COPY . .
 #RUN apt-get install -y  curl   make git
 RUN ls -a
 RUN go version
-RUN go mod tidy
+#RUN go mod tidy
 RUN make install
 RUN  apt-get install nginx -y
 RUN sh init.sh
