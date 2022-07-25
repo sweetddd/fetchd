@@ -14,7 +14,7 @@ RUN go version
 RUN go env -w GOPROXY=https://goproxy.cn,direct
 #RUN go mod tidy
 RUN make install
-RUN  apt-get install nginx -y
+RUN  #apt-get install nginx -y
 RUN sh init.sh
 
 #RUN ./target/release/dtx-chain build-spec --disable-default-bootnode --chain local > customSpec.json
