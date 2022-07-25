@@ -1,5 +1,10 @@
 FROM hub.c.163.com/library/golang:1.8
 
+ENV PACKAGES jq curl wget jq file make git
+
+RUN apt-get update && \
+    apt-get install -y $PACKAGES \
+
 WORKDIR /apps
 COPY . .
 RUN ls -a
