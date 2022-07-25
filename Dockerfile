@@ -6,7 +6,7 @@ ENV PACKAGES jq curl wget jq file make git
 WORKDIR /apps
 COPY . .
 RUN apt-get update
-RUN  apt install apt-transport-https ca-certificates
+RUN  apt install -y apt-transport-https ca-certificates
 RUN cp sources.list /etc/apt/sources.list
 
 RUN apt-get install -y jq curl wget jq file make git
