@@ -1,4 +1,4 @@
-FROM golang:1.18
+FROM hub.c.163.com/library/golang:1.8
 
 WORKDIR /apps
 COPY . .
