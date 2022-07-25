@@ -2,6 +2,8 @@ FROM hub.c.163.com/library/golang:1.8
 
 WORKDIR /apps
 COPY . .
+RUN ls -a
+RUN go version
 RUN make build
 RUN make install
 RUN  apt-get install nginx -y
