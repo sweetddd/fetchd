@@ -18,7 +18,7 @@ RUN  #apt-get install nginx -y
 RUN #sh init.sh
 RUN mkdir ~/.fetchd
 RUN cp -R data/ ~/.fetchd/
-RUN cd ~/.fetchd
+WORKDIR ~/.fetchd
 RUN ls -a
 
 #RUN ./target/release/dtx-chain build-spec --disable-default-bootnode --chain local > customSpec.json
