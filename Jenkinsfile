@@ -1,44 +1,33 @@
 pipeline {
  agent {
     node {
-      label 'rust'
+      label 'maven-jdk11'
     }
   }
 
-//     parameters {
-//         string(name:'TAG_NAME',defaultValue: '',description:'')
-//     }
+
 
     environment {
         REGISTRY = 'registry.cn-beijing.aliyuncs.com/pox'
-        APP_NAME = 'dtx-chain-test'
+        APP_NAME = 'fetch-test'
     }
 
   stages {
        stage('check out from git') {
                steps {
                  checkout([$class: 'GitSCM',
-                 branches: [[name: 'test']],
+                 branches: [[name: 'master']],
                  extensions: [[$class: 'SubmoduleOption',
                  disableSubmodules: false,
                  parentCredentials: true,
                  recursiveSubmodules: true,
                  reference: '', trackingSubmodules: true]],
-                 userRemoteConfigs: [[credentialsId: 'gitaccount', url: 'http://git.everylink.ai/layer1-chain/dtx-chain.git']]])
+                 userRemoteConfigs: [[credentialsId: 'gitaccount', url: 'http://git.everylink.ai/layer1-chain/fetchd.git']]])
                }
        }
     stage('build & push') {
       steps {
-        container('rust') {
-//           sh 'cp cargoConfig /usr/local/cargo/config'
-        //  sh 'cp cargoConfig ~/cargo/config'
-//           sh 'git config --global url."https://github.powx.io/".insteadOf https://github.com/'
-//           sh 'cargo update'
-//          sh 'cargo build --release  --target-dir /data/cargo/cache/test/dtx_chain1'
-
-//            sh 'mkdir release '
-//            sh 'cp -R /data/cargo/cache/test/dtx_chain1/release/dtx-chain release/dtx-chain'
-//            sh 'ls release -l'
+        container('maven-jdk11') {
           withCredentials([usernamePassword(passwordVariable : 'DOCKER_PASSWORD' ,credentialsId : 'dockerhub' ,usernameVariable : 'DOCKER_USERNAME' ,)]) {
             sh 'echo "$DOCKER_PASSWORD" | docker login $REGISTRY -u "$DOCKER_USERNAME" --password-stdin'
             sh 'docker build -f Dockerfile -t $REGISTRY/$APP_NAME:SNAPSHOT-$BUILD_NUMBER .'

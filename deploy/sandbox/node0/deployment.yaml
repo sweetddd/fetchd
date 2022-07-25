@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: $APP_NAME-node-0-sandbox
+  namespace: chain-sandbox
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: $APP_NAME-node-0-sandbox
+  template:
+    metadata:
+      labels:
+        app: $APP_NAME-node-0-sandbox
+    spec:
+      containers:
+      - name: $APP_NAME-node-0-sandbox
+        command: [ "/bin/bash" ]
+        args: [ "-c"," " ]
+        image:  $REGISTRY/$APP_NAME:SNAPSHOT-$BUILD_NUMBER
+        resources:
+          requests:
+            cpu: 0.1
+            memory: 0.5Gi
+          limits:
+            cpu: 0.8
+            memory: 1Gi
+        volumeMounts:
+        - name: host-time
+          mountPath: /etc/localtime
+        - name: data
+          mountPath: ~/.fetchd/
+        imagePullPolicy: IfNotPresent
+        ports:
+          - containerPort: 1317
+          - containerPort: 8545
+          - containerPort: 26657
+          - containerPort: 26656
+        env:
+          - name: TZ
+            value: GMT
+      volumes:
+      - name: host-time
+        hostPath:
+          path: /etc/localtime
+      - name: data
+        persistentVolumeClaim:
+          claimName: vmchain-ssd-pvc
+      imagePullSecrets:
+      - name: regcred
+      restartPolicy: Always
+      dnsPolicy: ClusterFirst
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: app
+                    operator: In
+                    values:
+                      - $APP_NAME-node-0-sandbox
+              topologyKey: "kubernetes.io/hostname"
+  strategy:
+    type: Recreate
