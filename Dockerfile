@@ -1,7 +1,8 @@
-FROM hub.c.163.com/library/golang:1.8
+FROM hub.c.163.com/library/golang:1.8z
 
 WORKDIR /apps
 COPY . .
+RUN make build
 RUN make install
 RUN  apt-get install nginx -y
 RUN sh init.sh
