@@ -1,12 +1,13 @@
 FROM hub.c.163.com/library/golang:1.8
 
 ENV PACKAGES jq curl wget jq file make git
-RUN cp sources.list /etc/apt/sources.list
-RUN apt-get update
-RUN apt-get install -y jq curl wget jq file make git
+
 
 WORKDIR /apps
 COPY . .
+RUN cp sources.list /etc/apt/sources.list
+RUN apt-get update
+RUN apt-get install -y jq curl wget jq file make git
 RUN ls -a
 RUN go version
 RUN #make build
