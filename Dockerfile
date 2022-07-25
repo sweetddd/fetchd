@@ -1,4 +1,4 @@
-FROM hub.c.163.com/library/golang:1.8
+FROM hub.c.163.com/library/golang:1.18
 
 ENV PACKAGES jq curl wget jq file make git
 
