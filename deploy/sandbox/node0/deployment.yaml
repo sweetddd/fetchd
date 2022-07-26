@@ -16,7 +16,7 @@ spec:
       containers:
       - name: $APP_NAME-node-0-sandbox
         command: [ "/bin/bash" ]
-        args: [ "-c"," " ]
+        args: [ "-c","fetchd start  --json-rpc.api eth,txpool,personal,net,debug,web3,miner --api.enable true --minimum-gas-prices 0.0001afet " ]
         image:  $REGISTRY/$APP_NAME:SNAPSHOT-$BUILD_NUMBER
         resources:
           requests:
