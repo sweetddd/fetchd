@@ -17,6 +17,9 @@ RUN make install
 RUN  #apt-get install nginx -y
 RUN #sh init.sh
 RUN mkdir ~/.fetchd
+WORKDIR /apps/data
+RUN ls -a
+WORKDIR /apps
 RUN cp -R data/ ~/.fetchd/
 WORKDIR ~/.fetchd
 RUN ls -a
