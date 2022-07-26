@@ -20,8 +20,8 @@ RUN mkdir ~/.fetchd
 WORKDIR /apps/data
 RUN ls -a
 WORKDIR /apps
-COPY data/ /root/.fetchd/
-WORKDIR /root/.fetchd/config
+COPY data/node0 /root/.fetchd/
+WORKDIR /root/.fetchd/
 RUN ls -a
 
 #RUN ./target/release/dtx-chain build-spec --disable-default-bootnode --chain local > customSpec.json

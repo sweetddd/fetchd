@@ -37,14 +37,14 @@ cat $HOME/.fetchd/config/genesis.json | jq '.app_state["mint"]["params"]["mint_d
 fetchd add-genesis-account validator 100000000000000000000afet
 
 
-fetchd add-genesis-account fetch1320mysnjer5r8vesmf33tlx26syscvek5824h7 100000000000000000000000afet
+fetchd add-genesis-account fetch1320mysnjer5r8vesmf33tlx26syscvek5824h7 100000000000000000000000000afet
 
 
 
 fetchd add-genesis-account henry 100000000000000000000000afet
 
 
-fetchd add-genesis-account fetch1n7yrkyhaq6f8znp09zlxcsxn4ldepqwn9fh7fq 100000000000000000000000afet
+fetchd add-genesis-account fetch1n7yrkyhaq6f8znp09zlxcsxn4ldepqwn9fh7fq 100000000000000000000000000afet
 
 
 
