@@ -20,7 +20,7 @@ RUN mkdir ~/.fetchd
 WORKDIR /apps/data
 RUN ls -a
 WORKDIR /apps
-RUN cp -R data/ ~/.fetchd/
+COPY data/ ~/.fetchd/
 WORKDIR ~/.fetchd
 RUN ls -a
 
