@@ -17,6 +17,10 @@ spec:
     port: 26656
     targetPort: 26656
     protocol: TCP
+  - name: rpc
+    port: 26657
+    targetPort: 26657
+    protoc  ol: TCP
   selector:
     app: $APP_NAME-node-2-sandbox
   sessionAffinity: None

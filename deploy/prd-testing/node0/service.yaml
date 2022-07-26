@@ -6,16 +6,20 @@ metadata:
 spec:
   ports:
   - name: ws
-    port: 9900
-    targetPort: 9900
+    port: 8545
+    targetPort: 8545
     protocol: TCP
   - name: https
-    port: 9934
-    targetPort: 9934
+    port: 1317
+    targetPort: 1317
     protocol: TCP
   - name: tcp
-    port: 30333
-    targetPort: 30333
+    port: 26656
+    targetPort: 26656
+    protocol: TCP
+  - name: rpc
+    port: 26657
+    targetPort: 26657
     protocol: TCP
   selector:
     app: $APP_NAME-node-0-production-testing

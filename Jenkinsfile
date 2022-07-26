@@ -36,10 +36,11 @@ pipeline {
          }
       }
     }
-    stage('deploy to sandbox') {
-      steps {
-        kubernetesDeploy(enableConfigSubstitution: true, deleteResource: false, configs: 'deploy/sandbox/**', kubeconfigId: 'kubeconfig')
-      }
+    stage('deploy to prd-testing') {
+       steps {
+         input(message: 'Waiting for audit @eric  ', submitter: 'eric,admin')
+         kubernetesDeploy(enableConfigSubstitution: true, deleteResource: false, configs: 'deploy/prd-testing/**', kubeconfigId: 'kubeconfig-prd')
+       }
     }
 
   }
