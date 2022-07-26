@@ -45,7 +45,7 @@ spec:
             path: /etc/localtime
         - name: data
           persistentVolumeClaim:
-            claimName: vmchain-ssd-pvc-2
+            claimName: fetchchain-ssd-pvc-3
       imagePullSecrets:
         - name: regcred
       restartPolicy: Always
