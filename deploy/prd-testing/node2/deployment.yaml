@@ -16,7 +16,7 @@ spec:
       containers:
         - name: $APP_NAME-node-2-production-testing
           command: [ "/bin/bash" ]
-          args: [ "-c","cp -R /root/.fetchd/node2/*  /data/blocks/fetchd/node2/;fetchd start  --json-rpc.api eth,txpool,personal,net,debug,web3,miner --api.enable true --minimum-gas-prices 0.0001afet  --home /data/blocks/fetchd/node2 --p2p.seeds 1dcc387039009040566c07ccbe58c0b2349f14de@fetch-test-node-0-production-testing.chain-sandbox.svc.cluster.local:26656  --rpc.laddr tcp://0.0.0.0:26657" ]
+          args: [ "-c","fetchd start  --json-rpc.api eth,txpool,personal,net,debug,web3,miner --api.enable true --minimum-gas-prices 0.0001afet  --home /data/blocks/fetchd/node2 --p2p.seeds 1dcc387039009040566c07ccbe58c0b2349f14de@fetch-test-node-0-production-testing.chain-prd-testing.svc.cluster.local:26656  --rpc.laddr tcp://0.0.0.0:26657" ]
           image:  $REGISTRY/$APP_NAME:SNAPSHOT-$BUILD_NUMBER
           resources:
             requests:
