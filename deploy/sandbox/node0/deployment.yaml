@@ -59,8 +59,6 @@ spec:
                     values:
                       - $APP_NAME-sandbox
               topologyKey: "kubernetes.io/hostname"
-  strategy:
-    type: Recreate
   volumeClaimTemplates:
     metadata:
       name: data
