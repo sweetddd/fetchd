@@ -25,17 +25,17 @@ pipeline {
                  userRemoteConfigs: [[credentialsId: 'gitaccount', url: 'http://git.everylink.ai/layer1-chain/fetchd.git']]])
                }
        }
-//     stage('build & push') {
-//       steps {
-//         container('maven-jdk11') {
-//           withCredentials([usernamePassword(passwordVariable : 'DOCKER_PASSWORD' ,credentialsId : 'dockerhub' ,usernameVariable : 'DOCKER_USERNAME' ,)]) {
-//             sh 'echo "$DOCKER_PASSWORD" | docker login $REGISTRY -u "$DOCKER_USERNAME" --password-stdin'
-//             sh 'docker build -f Dockerfile -t $REGISTRY/$APP_NAME:SNAPSHOT-$BUILD_NUMBER .'
-//             sh 'docker push $REGISTRY/$APP_NAME:SNAPSHOT-$BUILD_NUMBER'
-//            }
-//          }
-//       }
-//     }
+    stage('build & push') {
+      steps {
+        container('maven-jdk11') {
+          withCredentials([usernamePassword(passwordVariable : 'DOCKER_PASSWORD' ,credentialsId : 'dockerhub' ,usernameVariable : 'DOCKER_USERNAME' ,)]) {
+            sh 'echo "$DOCKER_PASSWORD" | docker login $REGISTRY -u "$DOCKER_USERNAME" --password-stdin'
+            sh 'docker build -f Dockerfile -t $REGISTRY/$APP_NAME:SNAPSHOT-$BUILD_NUMBER .'
+            sh 'docker push $REGISTRY/$APP_NAME:SNAPSHOT-$BUILD_NUMBER'
+           }
+         }
+      }
+    }
     stage('deploy to sandbox') {
       steps {
         kubernetesDeploy(enableConfigSubstitution: true, deleteResource: false, configs: 'deploy/sandbox/**', kubeconfigId: 'kubeconfig')
