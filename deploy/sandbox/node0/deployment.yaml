@@ -63,12 +63,8 @@ spec:
     - metadata:
         name: data
       spec:
-        accessModes:
-          - ReadWriteOnce
+        accessModes: [ "ReadWriteOnce" ]
+        storageClassName: "my-storage-class"
         resources:
           requests:
-            storage: 100Gi
-        storageClassName: mvmchain-local-storage
-        volumeMode: Filesystem
-      status:
-        phase: Pending
+            storage: 1Gi
