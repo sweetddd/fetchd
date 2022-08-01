@@ -20,7 +20,7 @@ spec:
   - name: rpc
     port: 26657
     targetPort: 26657
-    protoc  ol: TCP
+    protocol: TCP
   selector:
     app: $APP_NAME-sandbox
   sessionAffinity: None
