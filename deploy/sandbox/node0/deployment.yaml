@@ -10,6 +10,7 @@ spec:
       app: $APP_NAME-sandbox
   template:
     metadata:
+      creationTimestamp: null
       labels:
         app: $APP_NAME-sandbox
     spec:
