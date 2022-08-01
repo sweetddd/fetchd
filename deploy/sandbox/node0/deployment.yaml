@@ -56,7 +56,7 @@ spec:
         name: data
       spec:
         accessModes: [ "ReadWriteOnce" ]
-        storageClassName: "my-storage-class"
+        storageClassName: "mvmchain-local-storage"
         resources:
           requests:
-            storage: 1Gi
+            storage: 10Gi
