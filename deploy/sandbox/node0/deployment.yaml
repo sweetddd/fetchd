@@ -5,6 +5,7 @@ metadata:
   namespace: chain-sandbox
 spec:
   replicas: 3
+  serviceName: $APP_NAME-sandbox
   selector:
     matchLabels:
       app: $APP_NAME
