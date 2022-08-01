@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: $APP_NAME-sandbox
-        command: [ "/bin/bash" ]
+        command: [ "/bin/sh","-c","cp -R /root/.fetchd/$(hostname)/*  /data/blocks/demo/$(hostname)/" ]
         args: [ ""]
         image:  $REGISTRY/$APP_NAME:SNAPSHOT-$BUILD_NUMBER
         resources:
