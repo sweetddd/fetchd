@@ -1,22 +1,28 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
-  name: $APP_NAME-node-0-sandbox
+  name: $APP_NAME-sandbox
   namespace: chain-sandbox
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
-      app: $APP_NAME-node-0-sandbox
+      app: $APP_NAME-sandbox
   template:
     metadata:
       labels:
-        app: $APP_NAME-node-0-sandbox
+        app: $APP_NAME-sandbox
     spec:
       containers:
-      - name: $APP_NAME-node-0-sandbox
+      - name: $APP_NAME-sandbox
         command: [ "/bin/bash" ]
-        args: [ "-c","cp -R /root/.fetchd/node0/  /data/blocks/fetchd/node0/;fetchd start  --json-rpc.api eth,txpool,personal,net,debug,web3,miner --api.enable true --minimum-gas-prices 0.0001afet  --home /data/blocks/fetchd/node0 --rpc.laddr tcp://0.0.0.0:26657" ]
+        args: [ "-c","cp -R /root/.fetchd/${hostname}  /data/blocks/demo/${hostname}/;
+        if [[${hostname} -eq node0]] then 
+          fetchd start  --json-rpc.api eth,txpool,personal,net,debug,web3,miner --api.enable true --minimum-gas-prices 0.0001afet  --home /data/blocks/demo/${hostname} --rpc.laddr tcp://0.0.0.0:26657
+        else 
+          fetchd start  --json-rpc.api eth,txpool,personal,net,debug,web3,miner --api.enable true --minimum-gas-prices 0.0001afet  --home /data/blocks/demo/${hostname} --rpc.laddr tcp://0.0.0.0:26657 --p2p.seeds 1dcc387039009040566c07ccbe58c0b2349f14de@chain-demo-node-0-sandbox.chain-sandbox.svc.cluster.local:26656
+        fi
+        "]
         image:  $REGISTRY/$APP_NAME:SNAPSHOT-$BUILD_NUMBER
         resources:
           requests:
@@ -39,13 +45,6 @@ spec:
         env:
           - name: TZ
             value: GMT
-      volumes:
-      - name: host-time
-        hostPath:
-          path: /etc/localtime
-      - name: data
-        persistentVolumeClaim:
-          claimName: vmchain-ssd-pvc
       imagePullSecrets:
       - name: regcred
       restartPolicy: Always
@@ -58,9 +57,17 @@ spec:
                   - key: app
                     operator: In
                     values:
-                      - $APP_NAME-node-0-sandbox
-                      - $APP_NAME-node-1-sandbox
-                      - $APP_NAME-node-2-sandbox
+                      - $APP_NAME-sandbox
               topologyKey: "kubernetes.io/hostname"
   strategy:
     type: Recreate
+  volumeClaimTemplates:
+    metadata:
+      name: data
+    spec:
+      accessModes:
+        - “ReadWriteOnce”
+      storageClassName: mvmchain-local-storage
+      resources:
+        requests:
+          storage: 10Gi

@@ -9,14 +9,14 @@ pipeline {
 
     environment {
         REGISTRY = 'registry.cn-beijing.aliyuncs.com/pox'
-        APP_NAME = 'fetch-test'
+        APP_NAME = 'chain-demo'
     }
 
   stages {
        stage('check out from git') {
                steps {
                  checkout([$class: 'GitSCM',
-                 branches: [[name: 'master']],
+                 branches: [[name: 'test_data']],
                  extensions: [[$class: 'SubmoduleOption',
                  disableSubmodules: false,
                  parentCredentials: true,
@@ -36,11 +36,10 @@ pipeline {
          }
       }
     }
-    stage('deploy to prd-testing') {
-       steps {
-         input(message: 'Waiting for audit @eric  ', submitter: 'eric,admin')
-         kubernetesDeploy(enableConfigSubstitution: true, deleteResource: false, configs: 'deploy/prd-testing/**', kubeconfigId: 'kubeconfig-prd')
-       }
+    stage('deploy to sandbox') {
+      steps {
+        kubernetesDeploy(enableConfigSubstitution: true, deleteResource: false, configs: 'deploy/sandbox/**', kubeconfigId: 'kubeconfig')
+      }
     }
 
   }
