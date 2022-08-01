@@ -64,7 +64,7 @@ spec:
       name: data
     spec:
       accessModes:
-        - "ReadWriteOnce"
+        - ReadWriteOnce
       storageClassName: mvmchain-local-storage
       resources:
         requests:
