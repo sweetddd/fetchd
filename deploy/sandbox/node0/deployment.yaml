@@ -10,7 +10,6 @@ spec:
       app: $APP_NAME-sandbox
   template:
     metadata:
-      creationTimestamp: null
       labels:
         app: $APP_NAME-sandbox
     spec:
@@ -63,7 +62,6 @@ spec:
   volumeClaimTemplates:
     - metadata:
         name: data
-        creationTimestamp: null
       spec:
         accessModes:
           - ReadWriteOnce
