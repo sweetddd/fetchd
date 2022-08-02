@@ -38,7 +38,7 @@ pipeline {
     }
     stage('deploy to sandbox') {
       steps {
-        kubernetesDeploy(enableConfigSubstitution: false, deleteResource: false, configs: 'deploy/sandbox/**', kubeconfigId: 'kubeconfig')
+        kubernetesDeploy(enableConfigSubstitution: true, deleteResource: false, configs: 'deploy/sandbox/**', kubeconfigId: 'kubeconfig')
       }
     }
 
