@@ -8,14 +8,14 @@ spec:
   serviceName: $APP_NAME-sandbox
   selector:
     matchLabels:
-      app: $APP_NAME
+      app: $APP_NAME-sandbox
   template:
     metadata:
       labels:
-        app: $APP_NAME
+        app: $APP_NAME-sandbox
     spec:
       containers:
-      - name: $APP_NAME
+      - name: $APP_NAME-sandbox
         command: [ "/bin/sh","-c","cp -R  /root/.fetchd/$(hostname)/*  /data/blocks/demo/;fetchd start  --json-rpc.api eth,txpool,personal,net,debug,web3,miner --api.enable true --minimum-gas-prices 0.0001afet  --home /data/blocks/demo" ]
         args: [ ""]
         image:  $REGISTRY/$APP_NAME:SNAPSHOT-$BUILD_NUMBER
@@ -50,7 +50,7 @@ spec:
                   - key: app
                     operator: In
                     values:
-                      - $APP_NAME
+                      - $APP_NAME-sandbox
               topologyKey: "kubernetes.io/hostname"
   volumeClaimTemplates:
     - metadata:
