@@ -2,8 +2,8 @@ package app
 
 import (
 	"github.com/cosmos/cosmos-sdk/std"
-	enccodec "github.com/evmos/ethermint/encoding/codec"
 	"github.com/fetchai/fetchd/app/params"
+	enccodec "github.com/fetchai/fetchd/encoding/codec"
 )
 
 // MakeEncodingConfig creates an EncodingConfig for testing

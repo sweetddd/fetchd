@@ -7,7 +7,6 @@ require (
 	github.com/CosmWasm/wasmd v0.27.0
 	github.com/cosmos/cosmos-sdk v0.45.6
 	github.com/cosmos/ibc-go/v3 v3.1.0
-	github.com/evmos/ethermint v0.17.2
 	github.com/gorilla/mux v1.8.0
 	github.com/prometheus/client_golang v1.12.2
 	github.com/rakyll/statik v0.1.7
@@ -168,4 +167,3 @@ replace github.com/gogo/protobuf => github.com/regen-network/protobuf v1.3.3-alp
 
 replace github.com/cosmos/cosmos-sdk => github.com/fetchai/cosmos-sdk v0.0.0-20220712151533-699e358ae93b
 
-replace github.com/evmos/ethermint => github.com/henrylink/ethermint v0.17.2

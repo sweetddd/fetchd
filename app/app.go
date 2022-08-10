@@ -2,9 +2,9 @@ package app
 
 import (
 	"fmt"
-	ethermint "github.com/evmos/ethermint/types"
-	"github.com/evmos/ethermint/x/evm"
-	"github.com/evmos/ethermint/x/feemarket"
+	ethermint "github.com/fetchai/fetchd/types"
+	"github.com/fetchai/fetchd/x/evm"
+	"github.com/fetchai/fetchd/x/feemarket"
 	"io"
 	"net/http"
 	"os"
@@ -109,12 +109,12 @@ import (
 
 	appparams "github.com/fetchai/fetchd/app/params"
 
-	evmSrvflags "github.com/evmos/ethermint/server/flags"
-	evmkeeper "github.com/evmos/ethermint/x/evm/keeper"
-	evmtypes "github.com/evmos/ethermint/x/evm/types"
-	feemarketkeeper "github.com/evmos/ethermint/x/feemarket/keeper"
-	feemarkettypes "github.com/evmos/ethermint/x/feemarket/types"
 	evmAnte "github.com/fetchai/fetchd/app/ante"
+	evmSrvflags "github.com/fetchai/fetchd/server/flags"
+	evmkeeper "github.com/fetchai/fetchd/x/evm/keeper"
+	evmtypes "github.com/fetchai/fetchd/x/evm/types"
+	feemarketkeeper "github.com/fetchai/fetchd/x/feemarket/keeper"
+	feemarkettypes "github.com/fetchai/fetchd/x/feemarket/types"
 )
 
 const Name = "fetchd"

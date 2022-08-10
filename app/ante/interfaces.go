@@ -9,9 +9,9 @@ import (
 	"github.com/ethereum/go-ethereum/core"
 	"github.com/ethereum/go-ethereum/core/vm"
 	"github.com/ethereum/go-ethereum/params"
-	"github.com/evmos/ethermint/x/evm/statedb"
-	evmtypes "github.com/evmos/ethermint/x/evm/types"
-	feemarkettypes "github.com/evmos/ethermint/x/feemarket/types"
+	"github.com/fetchai/fetchd/x/evm/statedb"
+	evmtypes "github.com/fetchai/fetchd/x/evm/types"
+	feemarkettypes "github.com/fetchai/fetchd/x/feemarket/types"
 )
 
 // EVMKeeper defines the expected keeper interface used on the Eth AnteHandler

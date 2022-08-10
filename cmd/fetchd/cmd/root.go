@@ -39,14 +39,12 @@ import (
 	"github.com/fetchai/fetchd/app"
 	"github.com/fetchai/fetchd/app/params"
 
-	//"github.com/evmos/ethermint/app"
-	ethermintclient "github.com/evmos/ethermint/client"
-	ethermintServer "github.com/evmos/ethermint/server"
+	ethermintclient "github.com/fetchai/fetchd/client"
+	ethermintServer "github.com/fetchai/fetchd/server"
 
-	//"github.com/evmos/ethermint/server"
-	servercfg "github.com/evmos/ethermint/server/config"
-	srvflags "github.com/evmos/ethermint/server/flags"
-	ethermint "github.com/evmos/ethermint/types"
+	servercfg "github.com/fetchai/fetchd/server/config"
+	srvflags "github.com/fetchai/fetchd/server/flags"
+	ethermint "github.com/fetchai/fetchd/types"
 )
 
 // NewRootCmd creates a new root command for simd. It is called once in the
@@ -148,7 +146,6 @@ func initRootCmd(rootCmd *cobra.Command, encodingConfig params.EncodingConfig) {
 		ethermintclient.ValidateChainID(
 			genutilcli.InitCmd(app.ModuleBasics, app.DefaultNodeHome),
 		),
-		ethermintclient.NewTestnetCmd(app.ModuleBasics, banktypes.GenesisBalancesIterator{}),
 	)
 
 	a := appCreator{encodingConfig}
